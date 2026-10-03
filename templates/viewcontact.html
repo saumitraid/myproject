@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}View Contact{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="text-primary text-center">All Contact Details</h1>
+    {% if messages %}
+    {% for msg in messages %}
+    <div class="alert alert-success">
+        {{msg}}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% if contacts %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contact in contacts %}
+            <tr>
+                <td>{{contact.fullname}}</td>
+                <td>{{contact.email_id}}</td>
+                <td>{{contact.message}}</td>
+                <td><a href="{% url 'cont-upd-page' contact.id %}" class="btn btn-primary">Update</a></td>
+                <td><a href="{% url 'cont-del-page' contact.id %}" class="btn btn-danger">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h3>No Contact Details Found</h3>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Contact{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1 class="text-center text-primary">User Login</h1>
+        <div class="col-6">
+            <h2>Login</h2>
+            <form name="frm" method="post">
+                {% csrf_token %}
+                {% for f in form %}
+                <div class="mb-3">
+                    <label class="mb-1">{{f.label}}</label>
+                    {{f}}
+                </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary mb-5">Login</button>
+            </form>
+            {% if messages %}
+            {% for msg in messages %}
+            <div class="alert alert-danger">
+                {{msg}}
+            </div>
+            {% endfor %}
+            {% endif %}
+            
+        </div>
+    </div>
+{% endblock %}
